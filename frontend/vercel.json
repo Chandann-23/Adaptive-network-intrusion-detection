@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "https://chandann-23-adaptive-nids.hf.space/:path*"
+    }
+  ]
+}
