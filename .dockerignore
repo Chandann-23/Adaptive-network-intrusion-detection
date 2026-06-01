@@ -1,0 +1,24 @@
+# Exclude git configuration and logs
+.git
+.gitignore
+
+# Exclude virtual environments and IDE folders
+.venv
+.vscode
+.idea
+
+# Exclude caches and build logs
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# Exclude raw data (only processed pipeline artifacts are packaged)
+data/raw/
+
+# Exclude notebooks and experiment plots
+notebooks/
+reports/figures/

@@ -1,11 +1,11 @@
 version: '3.8'
 
 services:
-  # 1. Modular Machine Learning Pipeline Engine
+  # 1. Modular Machine Learning Pipeline Serving Engine
   ml-pipeline:
     build:
       context: ..
-      dockerfile: deployment/Dockerfile
+      dockerfile: Dockerfile
     container_name: network_ml_pipeline
     volumes:
       - ../data:/app/data
@@ -18,7 +18,7 @@ services:
       - MLFLOW_TRACKING_URI=http://mlflow-server:5000
     ports:
       - "8000:8000"
-    command: ["python", "src/models/train.py"]
+    command: ["python", "src/api/main.py"]
 
   # 2. Experiment Tracking & Model Registry Server (MLflow)
   # Fulfills scaling roadmap integration criteria

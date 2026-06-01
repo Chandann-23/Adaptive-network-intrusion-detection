@@ -1,120 +1,118 @@
-# Network Intrusion Detection & Threat Analytics Platform
-
-A production-grade, modular Machine Learning project structure and data analysis pipeline for Network Intrusion Detection Systems (NIDS) using the **NSL-KDD dataset**.
-
+---
+title: Adaptive Network Intrusion Detection System
+emoji: 🛡️
+colorFrom: blue
+colorTo: indigo
+sdk: docker
+app_port: 7860
+pinned: false
+license: mit
+short_description: Zero-day network attack detection via hybrid ML pipeline
 ---
 
-## 1. Project Directory Structure & Design System
+# Adaptive NIDS — Hybrid Zero-Day Detection API
 
-The platform is designed around a modular, clean pipeline pattern. This ensures a clear separation of concerns, keeping raw data, configuration parameters, data transformation logic, modeling scripts, and deployment configurations completely distinct.
+A production-grade **Network Intrusion Detection System** built on the NSL-KDD dataset.
 
-```text
-network-intrusion-detection/
-├── configs/                    # Core configuration files (YAML format)
-│   ├── data_config.yaml        # Configurations for preprocessing, drop columns, and columns classification
-│   └── model_config.yaml       # Hyperparameters, random state, and training configurations
-│
-├── data/                       # Structured data directories (gitignored except placeholders)
-│   ├── raw/                    # Original, immutable datasets (e.g. KDDTrain+.txt)
-│   ├── processed/              # Out-of-distribution processed matrices
-│   └── external/               # Supplementary log mappings / intelligence lists
-│
-├── models/                     # Serialized model bins and pipelines (gitignored)
-│
-├── notebooks/                  # Jupyter notebooks for active prototyping and profiling
-│   └── 1.0_exploratory_data_analysis.ipynb
-│
-├── reports/                    # Generated documentation, audit sheets, and visual metrics
-│   ├── figures/                # Visual charts, ROC curves, confusion matrices
-│   ├── nsl_kdd_cybersecurity_audit.md       # Audit of cybersecurity attack profiles
-│   ├── nsl_kdd_feature_analysis.md          # Feature-by-feature dictionary analysis
-│   └── nsl_kdd_data_quality_assessment.md   # Data quality readiness assessment
-│
-├── src/                        # Production-ready source code library
-│   ├── __init__.py
-│   ├── data/                   # Data fetch and load pipelines
-│   │   ├── __init__.py
-│   │   └── make_dataset.py
-│   ├── features/               # Columns mapping and scaling pipeline
-│   │   ├── __init__.py
-│   │   └── build_features.py
-│   ├── models/                 # Training and evaluation routines
-│   │   ├── __init__.py
-│   │   └── train.py
-│   └── utils/                  # Unified logging configurations
-│       ├── __init__.py
-│       └── logger.py
-│
-├── tests/                      # Testing suite
-│   ├── __init__.py
-│   ├── conftest.py             # Mock dataframe fixtures
-│   ├── test_data.py            # Data pipeline unit tests
-│   └── test_features.py        # Transformation pipeline unit tests
-│
-├── deployment/                 # Deployment and orchestration configurations
-│   ├── Dockerfile              # Multi-stage production container
-│   └── docker-compose.yml      # Orchestration for model serving and tracking
-│
-├── README.md                   # Main setup instructions
-├── ROADMAP.md                  # Development and scaling roadmap
-├── requirements.txt            # Python dependencies lists
-└── pyproject.toml              # Formatting and styling setup (Ruff, pytest)
+## Architecture
+
+```
+Input (41 network features)
+        ↓
+Stage 1: Isolation Forest (novelty detection)
+        ↓ anomaly flagged?
+Stage 2: XGBoost Multiclass Router
+        ↓
+Prediction: Normal / DoS / Probe / R2L / U2R
 ```
 
----
+## Key Results
 
-## 2. Environment Setup
+| Metric | Value |
+|---|---|
+| Novel Attack Recall | **89.4%** |
+| Seen Attack Recall | 83.1% |
+| False Positive Rate | 12.7% |
+| Architecture | Two-stage hybrid (IF + XGBoost) |
 
-To run the model training pipeline or run tests locally, set up a virtual environment and install the required dependencies:
+## API Endpoints
+
+| Method | Endpoint | Description |
+|---|---|---|
+| `GET` | `/` | Service info & version |
+| `GET` | `/health` | Health check |
+| `GET` | `/docs` | Swagger UI |
+| `POST` | `/predict` | Single connection prediction |
+| `POST` | `/predict_batch` | Batch prediction |
+
+## Sample Request
 
 ```bash
-# 1. Clone or navigate to the project directory
-cd "Network ML"
-
-# 2. Instantiate python virtual environment
-python -m venv .venv
-
-# 3. Activate the environment
-# On Windows PowerShell:
-.venv\Scripts\Activate.ps1
-# On Linux/macOS:
-source .venv/bin/activate
-
-# 4. Install dependencies
-pip install --upgrade pip
-pip install -r requirements.txt
+curl -X POST https://<your-space>.hf.space/predict \
+  -H "Content-Type: application/json" \
+  -d '{
+    "duration": 0,
+    "protocol_type": "tcp",
+    "service": "http",
+    "flag": "SF",
+    "src_bytes": 232,
+    "dst_bytes": 8153,
+    "land": 0,
+    "wrong_fragment": 0,
+    "urgent": 0,
+    "hot": 5,
+    "num_failed_logins": 0,
+    "logged_in": 1,
+    "num_compromised": 0,
+    "root_shell": 0,
+    "su_attempted": 0,
+    "num_root": 0,
+    "num_file_creations": 0,
+    "num_shells": 0,
+    "num_access_files": 0,
+    "num_outbound_cmds": 0,
+    "is_host_login": 0,
+    "is_guest_login": 0,
+    "count": 5,
+    "srv_count": 5,
+    "serror_rate": 0.0,
+    "srv_serror_rate": 0.0,
+    "rerror_rate": 0.0,
+    "srv_rerror_rate": 0.0,
+    "same_srv_rate": 1.0,
+    "diff_srv_rate": 0.0,
+    "srv_diff_host_rate": 0.0,
+    "dst_host_count": 255,
+    "dst_host_srv_count": 255,
+    "dst_host_same_srv_rate": 1.0,
+    "dst_host_diff_srv_rate": 0.0,
+    "dst_host_same_src_port_rate": 0.01,
+    "dst_host_srv_diff_host_rate": 0.0,
+    "dst_host_serror_rate": 0.0,
+    "dst_host_srv_serror_rate": 0.0,
+    "dst_host_rerror_rate": 0.0,
+    "dst_host_srv_rerror_rate": 0.0
+  }'
 ```
 
----
+## Sample Response
 
-## 3. Running the Pipeline & Execution
-
-### A. Run Automated Training Pipeline
-Running the training script will automatically download the NSL-KDD dataset to `data/raw/` (if not present), fit the preprocessing pipeline, train the XGBoost classifier, evaluate it on a validation split, and save the serialized model outputs to the `models/` directory:
-
-```bash
-python src/models/train.py
+```json
+{
+  "is_attack": false,
+  "attack_type": "normal",
+  "attack_family": "Normal Traffic",
+  "confidence": 0.94,
+  "anomaly_score": -0.12,
+  "stage1_decision": "normal",
+  "processing_time_ms": 2.3
+}
 ```
 
-### B. Run Automated Unit Tests
-We use `pytest` for pipeline validation. We run `pytest` through the python module interface (`python -m pytest`) to ensure the current workspace directory is correctly added to `sys.path`. Tests run offline using mock fixtures to verify feature dimensions and target mapping logic:
+## Tech Stack
 
-```bash
-# Run pytest tests
-python -m pytest
-
-# Verify code style and formatting using Ruff
-ruff check .
-```
-
-### C. Run via Docker Compose
-To build and execute the training pipeline inside an isolated container alongside a local **MLflow Tracking Server**:
-
-```bash
-# Navigate to the deployment folder
-cd deployment
-
-# Spin up pipeline and tracking database
-docker-compose up --build
-```
-Once started, the MLflow dashboard will be accessible at `http://localhost:5000` to inspect training runs and metric trends.
+- **Model**: Isolation Forest (Stage 1) + XGBoost (Stage 2)
+- **Dataset**: NSL-KDD (125,973 training samples)
+- **API**: FastAPI + Uvicorn
+- **Container**: Docker (python:3.10-slim)
+- **Frontend**: [Vercel Dashboard](#)

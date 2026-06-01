@@ -57,16 +57,27 @@ data/raw/*.zip
 data/processed/*.csv
 data/processed/*.npz
 data/processed/*.pkl
+# Exclude large processed parquets from git (too large, reproducible from raw data)
+data/processed/*.parquet
 data/external/*
 !data/raw/.gitkeep
 !data/processed/.gitkeep
 !data/external/.gitkeep
+
+# Exclude all model binaries by default (large experiment artifacts)
 models/*.pkl
 models/*.joblib
 models/*.h5
 models/*.onnx
 models/*.pt
+models/**/*.joblib
+models/**/*.pkl
 !models/.gitkeep
+
+# EXCEPTION: Include serving assets required for HF Spaces deployment
+# These are tiny (~7KB preprocessor and ~1.6MB model)
+!data/processed/preprocessing_pipeline.joblib
+!models/multiclass/hybrid_pipeline/model.joblib
 
 # System specific files
 .DS_Store

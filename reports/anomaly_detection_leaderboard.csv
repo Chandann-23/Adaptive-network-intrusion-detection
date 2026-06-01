@@ -1,0 +1,46 @@
+model,training_scheme,params,precision,recall,f1_score,accuracy,fpr,seen_recall,novel_recall,inference_time_ms
+Naive Bayes (Champion),Supervised (Generative),tau=0.50,0.906871,0.764124,0.829400,0.821061,0.103697,0.724650,0.859733,19.299500
+Isolation Forest,Normal Only,contamination=0.05,0.971255,0.660874,0.786552,0.795822,0.025847,0.681273,0.611467,91.363900
+Isolation Forest,Normal Only,contamination=0.1,0.924613,0.707239,0.801448,0.800523,0.076202,0.719366,0.677867,89.459800
+Isolation Forest,Normal Only,contamination=0.12,0.919707,0.732798,0.815682,0.811480,0.084543,0.744247,0.705067,90.199300
+Isolation Forest,Normal Only,contamination=0.15,0.913193,0.763189,0.831480,0.823900,0.095871,0.768579,0.750133,88.123100
+Isolation Forest,Normal Only,contamination=0.18,0.901596,0.796774,0.845950,0.834812,0.114921,0.793460,0.804800,107.588600
+Isolation Forest,Normal Only,contamination=0.2,0.898360,0.849217,0.873097,0.859475,0.126969,0.830673,0.894133,90.447600
+Isolation Forest,Normal Only,contamination=0.3,0.851127,0.915063,0.881938,0.860539,0.211513,0.889464,0.977067,98.025300
+Isolation Forest,Normal Only,contamination=0.4,0.823329,0.981220,0.895367,0.869455,0.278241,0.975889,0.994133,89.137700
+Isolation Forest,Normal Only,contamination=0.44,0.816936,0.999065,0.898868,0.872028,0.295850,0.999009,0.999200,93.001800
+Isolation Forest,Normal Only,contamination=auto,0.928329,0.682303,0.786526,0.789168,0.069612,0.695805,0.649600,89.587200
+Isolation Forest,Entire Set,contamination=0.05,0.966728,0.206031,0.339671,0.544003,0.009371,0.106903,0.446133,103.082600
+Isolation Forest,Entire Set,contamination=0.1,0.947884,0.301878,0.457920,0.593151,0.021934,0.197732,0.554133,99.220300
+Isolation Forest,Entire Set,contamination=0.12,0.876301,0.347775,0.497936,0.600781,0.064875,0.242211,0.603467,99.020700
+Isolation Forest,Entire Set,contamination=0.15,0.889324,0.425154,0.575285,0.642654,0.069921,0.309149,0.706133,103.350600
+Isolation Forest,Entire Set,contamination=0.18,0.897280,0.493493,0.636770,0.679516,0.074658,0.390290,0.743467,104.978600
+Isolation Forest,Entire Set,contamination=0.2,0.903334,0.544689,0.679597,0.707638,0.077026,0.457008,0.757067,99.030800
+Isolation Forest,Entire Set,contamination=0.3,0.887098,0.703499,0.784702,0.780252,0.118319,0.669382,0.786133,103.167800
+Isolation Forest,Entire Set,contamination=0.4,0.834792,0.802852,0.818510,0.797330,0.209968,0.738412,0.958933,95.959500
+Isolation Forest,Entire Set,contamination=0.44,0.815638,0.829112,0.822320,0.796043,0.247657,0.772322,0.966667,99.005700
+Isolation Forest,Entire Set,contamination=auto,0.877681,0.322060,0.471212,0.588538,0.059314,0.220632,0.567733,94.106400
+Local Outlier Factor,Normal Only,"n_neighbors=10, contamination=auto",0.896824,0.611626,0.727264,0.738866,0.092987,0.706925,0.380800,395.678400
+Local Outlier Factor,Normal Only,"n_neighbors=10, contamination=0.1",0.888352,0.673342,0.766046,0.765880,0.111832,0.767147,0.446133,417.347500
+Local Outlier Factor,Normal Only,"n_neighbors=10, contamination=0.2",0.795874,0.775657,0.785635,0.759049,0.262898,0.828691,0.647200,401.637000
+Local Outlier Factor,Normal Only,"n_neighbors=10, contamination=0.44",0.694888,0.899244,0.783967,0.717885,0.521779,0.922933,0.841867,402.985000
+Local Outlier Factor,Normal Only,"n_neighbors=20, contamination=auto",0.811799,0.389231,0.526177,0.600958,0.119246,0.396455,0.371733,417.428100
+Local Outlier Factor,Normal Only,"n_neighbors=20, contamination=0.1",0.831777,0.562144,0.670883,0.686036,0.150242,0.598150,0.474933,436.038900
+Local Outlier Factor,Normal Only,"n_neighbors=20, contamination=0.2",0.796735,0.764513,0.780292,0.754924,0.257749,0.836618,0.589867,411.237900
+Local Outlier Factor,Normal Only,"n_neighbors=20, contamination=0.44",0.696651,0.878672,0.777146,0.713139,0.505612,0.923924,0.769067,433.512600
+Local Outlier Factor,Normal Only,"n_neighbors=50, contamination=auto",0.709211,0.233383,0.351196,0.509138,0.126455,0.178575,0.366133,472.119000
+Local Outlier Factor,Normal Only,"n_neighbors=50, contamination=0.1",0.733172,0.307255,0.433035,0.542007,0.147771,0.272157,0.392267,513.696500
+Local Outlier Factor,Normal Only,"n_neighbors=50, contamination=0.2",0.741693,0.539235,0.624464,0.630811,0.248172,0.556975,0.496267,489.677500
+Local Outlier Factor,Normal Only,"n_neighbors=50, contamination=0.44",0.678272,0.807605,0.737310,0.672418,0.506230,0.843884,0.719733,495.236100
+Local Outlier Factor,Entire Set,"n_neighbors=10, contamination=auto",0.797676,0.272812,0.406573,0.546664,0.091443,0.208852,0.427733,365.289400
+Local Outlier Factor,Entire Set,"n_neighbors=10, contamination=0.1",0.798753,0.219590,0.344478,0.524264,0.073113,0.177144,0.322400,444.654200
+Local Outlier Factor,Entire Set,"n_neighbors=10, contamination=0.2",0.750821,0.391880,0.514976,0.579800,0.171867,0.312011,0.585333,321.151100
+Local Outlier Factor,Entire Set,"n_neighbors=10, contamination=0.44",0.618412,0.588872,0.603281,0.559129,0.480177,0.515909,0.765600,427.528200
+Local Outlier Factor,Entire Set,"n_neighbors=20, contamination=auto",0.777716,0.218655,0.341342,0.519650,0.082587,0.152923,0.377867,433.078600
+Local Outlier Factor,Entire Set,"n_neighbors=20, contamination=0.1",0.777480,0.225980,0.350178,0.522578,0.085470,0.160630,0.384267,399.854300
+Local Outlier Factor,Entire Set,"n_neighbors=20, contamination=0.2",0.711268,0.369906,0.486697,0.555846,0.198435,0.312892,0.508000,432.325400
+Local Outlier Factor,Entire Set,"n_neighbors=20, contamination=0.44",0.634405,0.633367,0.633886,0.583526,0.482340,0.578003,0.767467,446.142700
+Local Outlier Factor,Entire Set,"n_neighbors=50, contamination=auto",0.671602,0.215616,0.326432,0.493479,0.139327,0.143565,0.390133,482.709700
+Local Outlier Factor,Entire Set,"n_neighbors=50, contamination=0.1",0.668949,0.236032,0.348943,0.498625,0.154361,0.159419,0.421600,496.932100
+Local Outlier Factor,Entire Set,"n_neighbors=50, contamination=0.2",0.633066,0.338658,0.441263,0.511799,0.259397,0.256743,0.537067,506.868500
+Local Outlier Factor,Entire Set,"n_neighbors=50, contamination=0.44",0.588621,0.580457,0.584510,0.530252,0.536093,0.489266,0.801333,510.516200
