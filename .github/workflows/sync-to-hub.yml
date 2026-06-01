@@ -16,10 +16,9 @@ jobs:
           fetch-depth: 0
           lfs: true
 
-      - name: Push to Hugging Face Hub
-        uses: huggingface/hub-sync@v0.1.3
-        with:
-          github_repo_id: ${{ github.repository }}
-          huggingface_repo_id: Chandann-23/adaptive-nids
-          hf_token: ${{ secrets.HF_TOKEN }}
-          repo_type: space
+      - name: Push to Hugging Face Hub via git
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          git remote add hf https://Chandann-23:$HF_TOKEN@huggingface.co/spaces/Chandann-23/adaptive-nids
+          git push hf main --force
