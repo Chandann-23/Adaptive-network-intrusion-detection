@@ -1,0 +1,73 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+bin/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+
+# Local configurations & secrets
+.env
+.env.*
+*.local
+
+# IDEs and editors
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Data and Model storage (Essential MLOps practices)
+data/raw/*.csv
+data/raw/*.txt
+data/raw/*.gz
+data/raw/*.zip
+data/processed/*.csv
+data/processed/*.npz
+data/processed/*.pkl
+data/external/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+!data/external/.gitkeep
+models/*.pkl
+models/*.joblib
+models/*.h5
+models/*.onnx
+models/*.pt
+!models/.gitkeep
+
+# System specific files
+.DS_Store
+Thumbs.db

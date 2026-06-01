@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  # 1. Modular Machine Learning Pipeline Engine
+  ml-pipeline:
+    build:
+      context: ..
+      dockerfile: deployment/Dockerfile
+    container_name: network_ml_pipeline
+    volumes:
+      - ../data:/app/data
+      - ../models:/app/models
+      - ../configs:/app/configs
+      - ../notebooks:/app/notebooks
+      - ../reports:/app/reports
+    environment:
+      - ENV=development
+      - MLFLOW_TRACKING_URI=http://mlflow-server:5000
+    ports:
+      - "8000:8000"
+    command: ["python", "src/models/train.py"]
+
+  # 2. Experiment Tracking & Model Registry Server (MLflow)
+  # Fulfills scaling roadmap integration criteria
+  mlflow-server:
+    image: ghcr.io/mlflow/mlflow:latest
+    container_name: network_mlflow_server
+    ports:
+      - "5000:5000"
+    volumes:
+      - ../models/mlflow:/mlflow
+    command: >
+      mlflow server
+      --backend-store-uri sqlite:////mlflow/mlflow.db
+      --default-artifact-root /mlflow/artifacts
+      --host 0.0.0.0
+      --port 5000

@@ -1,0 +1,50 @@
+[build-system]
+requires = ["setuptools>=61.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "network_intrusion_detection"
+version = "1.0.0"
+description = "Production-grade Network Intrusion Detection and Threat Analytics Platform using NSL-KDD"
+readme = "README.md"
+requires-python = ">=3.9"
+authors = [
+    { name = "Senior ML Engineer", email = "engineer@network-ml-platform.com" }
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Topic :: Security",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+    "pandas>=1.4.0",
+    "numpy>=1.22.0",
+    "scikit-learn>=1.0.0",
+    "xgboost>=1.6.0",
+    "imbalanced-learn>=0.10.0",
+    "pyyaml>=6.0",
+    "pydantic>=1.9.0",
+    "requests>=2.27.0"
+]
+
+[tool.ruff]
+line-length = 88
+select = ["E", "F", "W", "I"]
+ignore = []
+
+[tool.ruff.mccabe]
+max-complexity = 10
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+filterwarnings = [
+    "ignore::DeprecationWarning",
+]
+
+[tool.pyright]
+extraPaths = ["./"]
+pythonVersion = "3.10"
+

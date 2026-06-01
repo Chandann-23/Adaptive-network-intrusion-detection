@@ -1,0 +1,34 @@
+{
+  "dataset_version": "1.0.0",
+  "timestamp": "2026-06-01T04:02:26.679023+00:00",
+  "raw_shapes": {
+    "train_raw_samples": 125973,
+    "test_raw_samples": 22544
+  },
+  "processed_shapes": {
+    "train_processed_samples": 100778,
+    "val_processed_samples": 25195,
+    "test_processed_samples": 22544,
+    "features_before_processing": 40,
+    "features_after_processing": 54
+  },
+  "class_distribution_train": {
+    "0_benign": 53874,
+    "1_anomaly": 46904
+  },
+  "multiclass_distribution_train": {
+    "0_normal": 53874,
+    "1_dos": 36822,
+    "2_probe": 9267,
+    "3_r2l": 769,
+    "4_u2r": 46
+  },
+  "pipeline_steps": [
+    "DropLeakageAndDeadColumns",
+    "DataValidationPassed",
+    "FrequencyConsolidateService",
+    "OneHotEncodeCategoricals",
+    "Log1pSkewedNumerics",
+    "RobustScaleCounts"
+  ]
+}

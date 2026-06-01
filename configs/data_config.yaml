@@ -1,0 +1,69 @@
+# Data Pipeline Configuration
+
+paths:
+  raw_data_dir: "data/raw"
+  processed_data_dir: "data/processed"
+  raw_data_file: "data/raw/KDDTrain+.txt"
+  test_data_file: "data/raw/KDDTest+.txt"
+
+features:
+  # Label to predict
+  target: "class"
+  
+  # Columns to drop entirely due to zero variance or data leakage
+  columns_to_drop:
+    - "difficulty_score"
+    - "num_outbound_cmds"
+  
+  # Grouping definitions for preprocessing
+  categorical:
+    - "protocol_type"
+    - "service"
+    - "flag"
+    
+  binary:
+    - "land"
+    - "logged_in"
+    - "root_shell"
+    - "is_hot_login"
+    - "is_guest_login"
+    
+  skewed_numerical:
+    - "duration"
+    - "src_bytes"
+    - "dst_bytes"
+    
+  robust_scale_numerical:
+    - "count"
+    - "srv_count"
+    - "hot"
+    - "num_failed_logins"
+    - "num_compromised"
+    - "num_root"
+    - "num_file_creations"
+    - "num_shells"
+    - "num_access_files"
+    
+  rate_numerical:
+    - "serror_rate"
+    - "srv_serror_rate"
+    - "rerror_rate"
+    - "srv_rerror_rate"
+    - "same_srv_rate"
+    - "diff_srv_rate"
+    - "srv_diff_host_rate"
+    - "dst_host_count"
+    - "dst_host_srv_count"
+    - "dst_host_same_srv_rate"
+    - "dst_host_diff_srv_rate"
+    - "dst_host_same_src_port_rate"
+    - "dst_host_srv_diff_host_rate"
+    - "dst_host_serror_rate"
+    - "dst_host_srv_serror_rate"
+    - "dst_host_rerror_rate"
+    - "dst_host_srv_rerror_rate"
+
+splitting:
+  train_ratio: 0.8
+  random_state: 42
+  stratify: true

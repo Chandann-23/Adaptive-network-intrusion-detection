@@ -1,0 +1,36 @@
+# Model Training and Hyperparameter Configuration
+
+model:
+  type: "xgboost"
+  name: "network_intrusion_xgb"
+  version: "1.0.0"
+  random_state: 42
+
+# Hyperparameters for XGBoost Classifier
+hyperparameters:
+  max_depth: 6
+  learning_rate: 0.1
+  n_estimators: 150
+  subsample: 0.8
+  colsample_bytree: 0.8
+  objective: "binary:logistic"
+  eval_metric: "logloss"
+  use_label_encoder: false
+  # class weights multiplier to mitigate severe imbalance (handled via scale_pos_weight for binary)
+  scale_pos_weight: 1.0
+
+# Multi-class options (if classification is expanded to 5 classes)
+multiclass:
+  objective: "multi:softprob"
+  num_class: 5
+  eval_metric: "mlogloss"
+
+training:
+  early_stopping_rounds: 15
+  test_size: 0.2
+  save_model_dir: "models"
+  metrics:
+    - "accuracy"
+    - "precision"
+    - "recall"
+    - "f1_macro"
